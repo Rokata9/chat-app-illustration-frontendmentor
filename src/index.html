@@ -1,68 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-  
-  <title>Frontend Mentor | Chat app Illustration</title>
-</head>
-<body>
-  <div class="phone">
-    <header class="phone-header bg-gradient">
-      <div class="back"></div>
-      <div class="avatar">
-        <img src="/assets/avatar.jpg" alt="user avatar" />
-      </div>
-      <p class="user-name">Samuel Green</p>
-      <p class="user-status">Available to Walk</p>
-      <div class="actions"></div>
-    </header>
-    <main class="phone-chat flow">
-      <div class="message-wrapper inline-start">
-        <p class="chat-message bg-mid">That sounds great. I’d be happy with that.</p>
-      </div>
-      <div class="message-wrapper inline-start">
-        <p class="chat-message bg-mid">Could you send over some pictures of your dog, please?</p>
-      </div>
-      <div class="chat-message space-evenly">
-        <img src="assets/dog-image-1.jpg" alt="" />
-        <img src="assets/dog-image-2.jpg" alt="" />
-        <img src="assets/dog-image-3.jpg" alt="" />
-      </div>
-      <div class="message-wrapper inline-end">
-        <p class="chat-message bg-light ">Here are a few pictures. She’s a happy girl!</p>
-      </div>
-      <div class="message-wrapper inline-end">
-        <p class="chat-message bg-light">Can you make it?</p>
-      </div>
-      <div class="message-wrapper inline-start">
-        <p class="chat-message bg-mid">She looks so happy! The time we discussed works. How long shall I take her out for?</p>
-      </div>
-      <div class="message-wrapper inline-start">
-        <p class="chat-message bg-gradient space-evenly">30 minute walk $29</p>
-      </div>
-      <div class="message-wrapper inline-start">
-        <p class="chat-message bg-gradient space-evenly">1 hour walk $49</p>
-      </div>
-    </main>
-  </div>
-  <!-- Type a message…
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Frontend Mentor | Chat app Illustration</title>
+  </head>
+  <body>
+    <div class="phone">
+      <header class="phone-header bg-gradient">
+        <div class="back"></div>
+        <div class="avatar">
+          <img src="/assets/avatar.jpg" alt="user avatar" />
+        </div>
+        <p class="user-name">Samuel Green</p>
+        <p class="user-status">Available to Walk</p>
+        <div class="actions"></div>
+      </header>
+      <main class="phone-chat flow">
+        <div class="message-wrapper inline-start">
+          <p class="chat-message bg-mid">
+            That sounds great. I’d be happy with that.
+          </p>
+        </div>
+        <div class="message-wrapper inline-start">
+          <p class="chat-message bg-mid">
+            Could you send over some pictures of your dog, please?
+          </p>
+        </div>
+        <div class="message-wrapper inline-end">
+          <div class="space-evenly">
+            <img src="assets/dog-image-1.jpg" alt="dog image 1" />
+            <img src="assets/dog-image-2.jpg" alt="dog image 2" />
+            <img src="assets/dog-image-3.jpg" alt="dog image 3" />
+          </div>
+        </div>
+        <div class="message-wrapper inline-end">
+          <p class="chat-message bg-light">
+            Here are a few pictures. She’s a happy girl!
+          </p>
+        </div>
+        <div class="message-wrapper inline-end">
+          <p class="chat-message bg-light">Can you make it?</p>
+        </div>
+        <div class="message-wrapper inline-start">
+          <p class="chat-message bg-mid">
+            She looks so happy! The time we discussed works. How long shall I
+            take her out for?
+          </p>
+        </div>
+        <div class="message-wrapper inline-start">
+          <p class="chat-message bg-gradient">
+            <label class="radio-wrapper">
+              30 minute walk
+              <input type="radio" name="walk-duration" /> 
+              <span class="checkmark"></span>
+            </label>
+            <span class="price">$29</span>
+          </p>
+        </div>
+        <div class="message-wrapper inline-start">
+          <p class="chat-message bg-gradient">
+            <label class="radio-wrapper">
+              1 hour walk
+              <input type="radio" name="walk-duration" />
+              <span class="checkmark"></span>
+            </label>
+            <span class="price">$49</span>
+          </p>
+        </div>
+      </main>
+    </div>
+    <!-- Type a message…
 
   Simple booking
 
   Stay in touch with our dog walkers through the chat interface. This makes it easy to 
   discuss arrangements and make bookings. Once the walk has been completed you can rate 
   your walker and book again all through the chat. -->
-  
-  <!-- <div class="attribution">
+
+    <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div> -->
-</body>
+  </body>
 </html>
