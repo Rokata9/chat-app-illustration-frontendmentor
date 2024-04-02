@@ -32,58 +32,68 @@
         <p class="user-status">Available to Walk</p>
         <div class="actions"></div>
       </header>
-      <main class="phone-chat flow">
-        <div class="message-wrapper inline-start">
-          <p class="chat-message bg-mid">
-            That sounds great. I’d be happy with that.
-          </p>
-        </div>
-        <div class="message-wrapper inline-start">
-          <p class="chat-message bg-mid">
-            Could you send over some pictures of your dog, please?
-          </p>
-        </div>
-        <div class="message-wrapper inline-end">
-          <div class="space-evenly">
-            <img src="assets/dog-image-1.jpg" alt="dog image 1" />
-            <img src="assets/dog-image-2.jpg" alt="dog image 2" />
-            <img src="assets/dog-image-3.jpg" alt="dog image 3" />
+
+      <main class="phone-chat">
+        <div class="message-history flow">
+          <div class="message-wrapper inline-start">
+            <p class="chat-message bg-mid">
+              That sounds great. I’d be happy with that.
+            </p>
+          </div>
+          <div class="message-wrapper inline-start">
+            <p class="chat-message bg-mid">
+              Could you send over some pictures of your dog, please?
+            </p>
+          </div>
+          <div class="message-wrapper inline-end">
+            <div class="space-evenly">
+              <img src="assets/dog-image-1.jpg" alt="dog image 1" />
+              <img src="assets/dog-image-2.jpg" alt="dog image 2" />
+              <img src="assets/dog-image-3.jpg" alt="dog image 3" />
+            </div>
+          </div>
+          <div class="message-wrapper inline-end">
+            <p class="chat-message bg-light">
+              Here are a few pictures. She’s a happy girl!
+            </p>
+          </div>
+          <div class="message-wrapper inline-end">
+            <p class="chat-message bg-light">Can you make it?</p>
+          </div>
+          <div class="message-wrapper inline-start">
+            <p class="chat-message bg-mid">
+              She looks so happy! The time we discussed works. How long shall I
+              take her out for?
+            </p>
+          </div>
+          <div class="message-wrapper inline-start">
+            <p class="chat-message bg-gradient">
+              <label class="radio-wrapper">
+                30 minute walk
+                <input type="radio" name="walk-duration" />
+                <span class="checkmark"></span>
+              </label>
+              <span class="price">$29</span>
+            </p>
+          </div>
+          <div class="message-wrapper inline-start">
+            <p class="chat-message bg-gradient">
+              <label class="radio-wrapper">
+                1 hour walk
+                <input type="radio" name="walk-duration" />
+                <span class="checkmark"></span>
+              </label>
+              <span class="price">$49</span>
+            </p>
           </div>
         </div>
-        <div class="message-wrapper inline-end">
-          <p class="chat-message bg-light">
-            Here are a few pictures. She’s a happy girl!
-          </p>
-        </div>
-        <div class="message-wrapper inline-end">
-          <p class="chat-message bg-light">Can you make it?</p>
-        </div>
-        <div class="message-wrapper inline-start">
-          <p class="chat-message bg-mid">
-            She looks so happy! The time we discussed works. How long shall I
-            take her out for?
-          </p>
-        </div>
-        <div class="message-wrapper inline-start">
-          <p class="chat-message bg-gradient">
-            <label class="radio-wrapper">
-              30 minute walk
-              <input type="radio" name="walk-duration" /> 
-              <span class="checkmark"></span>
-            </label>
-            <span class="price">$29</span>
-          </p>
-        </div>
-        <div class="message-wrapper inline-start">
-          <p class="chat-message bg-gradient">
-            <label class="radio-wrapper">
-              1 hour walk
-              <input type="radio" name="walk-duration" />
-              <span class="checkmark"></span>
-            </label>
-            <span class="price">$49</span>
-          </p>
-        </div>
+
+        <footer>
+          <div class="input-wrapper">
+            <input type="text" name="message" placeholder="Type a message..." />
+            <button type="button" class="send-btn">></button>
+          </div>
+        </footer>
       </main>
     </div>
     <!-- Type a message…

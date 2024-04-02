@@ -141,8 +141,16 @@ body {
     overflow-y: auto;
     margin-top: -0.5rem;
     padding: 1.5em 1em 1em;
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     //border-radius: 0 0 1.5rem 1.5rem; blurry text???
+
+    .message-history {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
     .message-wrapper {
       display: flex;
 
@@ -207,6 +215,44 @@ body {
             font-weight: var(--fw-700);
             font-size: var(--fs-500);
           }
+        }
+      }
+    }
+
+    footer {
+      .input-wrapper {
+        position: relative;
+
+        input {
+          background-color: hsl(var(--clr-neutral-100));
+          border: none;
+          border-radius: 100vw;
+          width: 100%;
+          padding: 0.75em;
+          position: relative;
+
+          &:focus {
+            outline: none;
+          }
+
+          &::placeholder {
+            opacity: 1;
+            color: var(--clr-neutral-400);
+          }
+        }
+
+        .send-btn {
+          position: absolute;
+          right: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 2rem;
+          height: 2rem;
+          border: none;
+          background-color: var(--clr-secondary-500);
+          border-radius: 50%;
+          // TODO: replace with SVG icon
+          color: hsl(var(--clr-neutral-100));
         }
       }
     }
