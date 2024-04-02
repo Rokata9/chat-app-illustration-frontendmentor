@@ -1,0 +1,151 @@
+@use "resets";
+
+:root {
+  --clr-primary-300: hsl(276, 100%, 81%);
+  --clr-primary-400: hsl(276, 55%, 52%);
+
+  --clr-neutral-100: 0 0% 100%;
+  --clr-neutral-400: hsl(270, 7%, 64%);
+  --clr-neutral-500: hsl(271, 15%, 43%);
+  --clr-neutral-600: hsl(271, 36%, 24%);
+
+  --clr-secondary-300: hsl(270, 20%, 96%);
+  --clr-secondary-400: hsl(206, 6%, 79%); 
+  --clr-secondary-500: hsl(271, 36%, 24%);
+  --clr-secondary-600: hsl(289, 100%, 72%);
+
+  --fs-200: 0.75rem;
+  --fs-300: 0.813rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-700: 2.125rem;
+  --fs-900: 3.375rem;
+
+  --fw-200: 200;
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-700: 700;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flow > * + * {
+  margin-top: 1rem;
+}
+
+@mixin gradient($deg: 45deg) {
+  background: linear-gradient(
+    var(--gradient-angle, $deg),
+    hsl(293, 100%, 63%),
+    hsl(264, 100%, 61%)
+  );
+}
+
+/* - Pale Violet (sub-heading at the top of the app UI): hsl(276, 100%, 81%)
+ - Moderate Violet (chat on the left): hsl(276, 55%, 52%)
+ - Desaturated Dark Violet (chat on the right): hsl(271, 15%, 43%)
+ - Grayish Blue (placeholder text): hsl(206, 6%, 79%)
+ - Very Dark Desaturated Violet (main heading): hsl(271, 36%, 24%)
+ - Dark Grayish Violet (paragraph): hsl(270, 7%, 64%) */
+
+.phone {
+  min-width: 18rem;
+  max-width: 25rem;
+  aspect-ratio: 9 / 21;
+  padding: 1.25em;
+  box-shadow: 0 16px 20px 10px rgb(234 221 221 / 50%);
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // TODO: remove
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  p {
+    margin: 0;
+  }
+
+  .phone-header {
+    display: grid;
+    position: relative;
+    grid-template-areas:
+      "back avatar username actions"
+      "back avatar status actions";
+    grid-template-columns: min-content min-content 1fr min-content;
+    gap: 0.25rem;
+    align-items: center;
+    padding: 2em 1em 1em;
+    border-radius: 1.5em 1.5em 0.5em 0.5em;
+    @include gradient(-45deg);
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 65%;
+      height: 2.75rem;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: hsl(var(--clr-neutral-100));
+      border-radius: 100vw;
+    }
+
+    
+
+    // TODO: temp
+    .back,
+    .actions {
+      width: 20px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background-color: red;
+    }
+
+    .back {
+      grid-area: back;
+    }
+
+    .avatar {
+      grid-area: avatar;
+      width: 2.5rem;
+      aspect-ratio: 1;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .user-name {
+      grid-area: username;
+      font-weight: var(--fw-500);
+      color: hsl(var(--clr-neutral-100));
+    }
+
+    .user-status {
+      grid-area: status;
+      font-size: var(--fs-300);
+      color: hsl(var(--clr-neutral-100) / 0.5);
+    }
+
+    .actions {
+      grid-area: actions;
+    }
+  }
+
+  .phone-chat {
+    background-color: var(--clr-secondary-300);
+    overflow-y: auto;
+    margin-top: -0.5rem;
+    padding: 1.5em 1em 1em;
+    flex-grow: 1;
+    //border-radius: 0 0 1.5rem 1.5rem;
+  }
+}
