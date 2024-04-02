@@ -10,7 +10,7 @@
   --clr-neutral-600: hsl(271, 36%, 24%);
 
   --clr-secondary-300: hsl(270, 20%, 96%);
-  --clr-secondary-400: hsl(206, 6%, 79%); 
+  --clr-secondary-400: hsl(206, 6%, 79%);
   --clr-secondary-500: hsl(271, 36%, 24%);
   --clr-secondary-600: hsl(289, 100%, 72%);
 
@@ -28,6 +28,9 @@
   --fw-700: 700;
 }
 
+$br-chat-message-3-corners: 1.5em;
+$br-chat-message-bottom-corner: 0.5em;
+
 body {
   font-family: "Rubik", sans-serif;
   display: flex;
@@ -36,7 +39,7 @@ body {
 }
 
 .flow > * + * {
-  margin-top: 1rem;
+  margin-top: 1rem !important;
 }
 
 @mixin gradient($deg: 45deg) {
@@ -59,7 +62,7 @@ body {
   max-width: 25rem;
   aspect-ratio: 9 / 21;
   padding: 1.25em;
-  box-shadow: 0 16px 20px 10px rgb(234 221 221 / 50%);
+  box-shadow: 0 16px 20px 10px rgb(204 198 198 / 50%);
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -97,8 +100,6 @@ body {
       background-color: hsl(var(--clr-neutral-100));
       border-radius: 100vw;
     }
-
-    
 
     // TODO: temp
     .back,
@@ -146,6 +147,36 @@ body {
     margin-top: -0.5rem;
     padding: 1.5em 1em 1em;
     flex-grow: 1;
-    //border-radius: 0 0 1.5rem 1.5rem;
+    //border-radius: 0 0 1.5rem 1.5rem; blurry text???
+    .message-wrapper {
+      display: flex;
+
+      &.inline-start .chat-message {
+        border-bottom-left-radius: $br-chat-message-bottom-corner;
+        border-bottom-right-radius: $br-chat-message-3-corners;
+      }
+
+      &.inline-end .chat-message {
+        border-bottom-left-radius: $br-chat-message-3-corners;
+        border-bottom-right-radius: $br-chat-message-bottom-corner;
+      }
+
+      .chat-message {
+        padding: 0.75em;
+        border-top-left-radius: $br-chat-message-3-corners;
+        border-top-right-radius: $br-chat-message-3-corners;
+        background-color: var(--bg, hsl(var(--clr-neutral-100)));
+        color: var(--fg, var(--clr-neutral-600));
+        max-width: 70%;
+
+        &.bg-light {
+          box-shadow: 0px 10px 20px 0px rgb(204 198 198 / 50%);
+        }
+      }
+
+      &.inline-end {
+        justify-content: flex-end;
+      }
+    }
   }
 }
