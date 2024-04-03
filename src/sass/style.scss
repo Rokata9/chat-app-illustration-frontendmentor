@@ -41,6 +41,13 @@ body {
   margin-top: 1rem !important;
 }
 
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
 @mixin gradient($deg: 45deg) {
   background: linear-gradient($deg, hsl(293, 100%, 63%), hsl(264, 100%, 61%));
 }
@@ -53,8 +60,7 @@ body {
  - Dark Grayish Violet (paragraph): hsl(270, 7%, 64%) */
 
 .phone {
-  min-width: 18rem;
-  max-width: 25rem;
+  width: clamp(18rem, 14.1379rem + 19.3103vw, 25rem);
   aspect-ratio: 9 / 21;
   padding: 1.25em;
   box-shadow: 0 16px 20px 10px rgb(204 198 198 / 50%);
@@ -136,23 +142,36 @@ body {
     }
   }
 
+  .item-scroller {
+    overflow-y: scroll;
+    flex-grow: 1;
+  }
+
+  .chat-container {
+    overflow: hidden;
+    position: relative;
+  }
+
   .phone-chat {
     background-color: var(--clr-secondary-300);
-    overflow-y: auto;
+    // overflow-y: auto;
     margin-top: -0.5rem;
     padding: 1.5em 1em 1em;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    //border-radius: 0 0 1.5rem 1.5rem; blurry text???
+    // display: flex;
+    // flex-direction: column;
+    // flex-grow: 1;
 
-    .message-history {
-      flex-grow: 1;
-      overflow-y: auto;
-    }
+    transition: transform 200ms ease-in-out;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    //top: 0;
+    //border-radius: 0 0 1.5rem 1.5rem; blurry text???
 
     .message-wrapper {
       display: flex;
+      padding-top: 1rem;
 
       .space-evenly {
         display: flex;
@@ -166,12 +185,12 @@ body {
         }
       }
 
-      &.inline-start .chat-message {
+      &.start .chat-message {
         border-bottom-left-radius: $br-chat-message-bottom-corner;
         border-bottom-right-radius: $br-chat-message-3-corners;
       }
 
-      &.inline-end {
+      &.end {
         justify-content: flex-end;
         .chat-message {
           border-bottom-left-radius: $br-chat-message-3-corners;
@@ -218,42 +237,45 @@ body {
         }
       }
     }
+  }
 
-    footer {
-      .input-wrapper {
+  footer {
+    background-color: var(--clr-secondary-300);
+    padding: 0 1em 1em;
+
+    .input-wrapper {
+      position: relative;
+
+      input {
+        background-color: hsl(var(--clr-neutral-100));
+        border: none;
+        border-radius: 100vw;
+        width: 100%;
+        padding: 0.75em;
         position: relative;
 
-        input {
-          background-color: hsl(var(--clr-neutral-100));
-          border: none;
-          border-radius: 100vw;
-          width: 100%;
-          padding: 0.75em;
-          position: relative;
-
-          &:focus {
-            outline: none;
-          }
-
-          &::placeholder {
-            opacity: 1;
-            color: var(--clr-neutral-400);
-          }
+        &:focus {
+          outline: none;
         }
 
-        .send-btn {
-          position: absolute;
-          right: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 2rem;
-          height: 2rem;
-          border: none;
-          background-color: var(--clr-secondary-500);
-          border-radius: 50%;
-          // TODO: replace with SVG icon
-          color: hsl(var(--clr-neutral-100));
+        &::placeholder {
+          opacity: 1;
+          color: var(--clr-neutral-400);
         }
+      }
+
+      .send-btn {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        background-color: var(--clr-secondary-500);
+        border-radius: 50%;
+        // TODO: replace with SVG icon
+        color: hsl(var(--clr-neutral-100));
       }
     }
   }
