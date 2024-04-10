@@ -37,6 +37,8 @@ body {
   justify-content: center;
   flex-direction: column;
   margin: 0;
+  background-color: var(--clr-secondary-300);
+  overflow-x: hidden;
 }
 
 .flow > * + * {
@@ -60,6 +62,8 @@ body {
   // in rems as we want to be able to zoom in that particular part
   --phone-width: clamp(18rem, 14.8182rem + 15.9091vw, 25rem); // from 320px to 1024px
 
+  --phone-height: calc(16/9 * var(--phone-width));
+
   // fraction of phone width could also be clamped instead of fixed rems, specifies
   // what part of the gradient flows behind phone
   --gradient-right-offset: clamp(-20rem, -30rem + 20.8333vw, -5rem); // from 768px to 1920px
@@ -67,33 +71,49 @@ body {
   padding-inline: 1rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100%;
+  // align-items: center;
+  flex-grow: 1;
   gap: var(--container-gap);
  }
 
- .booking {
+.booking {
   max-width: 40ch;
- }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.booking::before {
+  content: '';
+  position: absolute;
+  right: calc(-1 * calc(50vw - var(--container-gap) * 0.5 - 100% - 0rem));
+  bottom: 0;
+  top: 2rem; //calc(calc(100% - var(--phone-height)) * 0.5 - 2rem);
+  left: 100%; // calc(50vw - var(--container-gap) * 0.5 - 410px - 1rem);
+  background: teal;
+  border-radius: 100vw 100vw 0 0;
+}
 
 .phone-wrapper {
   // we want to keep .phone overflow hidden for the scroll so this should be the containing block for the gradient
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .phone-wrapper:before {
   content: '';
-  background: teal;
   position: absolute;
   // need to calculate the distance between left edge of screen and left edge of phone, 
   // that would be the negative left for the decoration; should be with - as it's relative to the phone (needs to move right)
   // +2rem - so it's not exactly glued to the left edge and hide pratially the border radius
   left: calc(-1 * calc(50vw - var(--container-gap) * 0.5 - var(--phone-width) + 2rem));
-  top: -100vh;
+  top: 0;
   right: calc(100% - calc(-1 * var(--gradient-right-offset)));
-  bottom: -2rem;
+  bottom: 2rem;
   z-index: -1;
-  border-radius: 100vw;
+  border-radius: 0 0 100vw 100vw;
   @include gradient(180deg);
  }
 
