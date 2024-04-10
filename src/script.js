@@ -3,10 +3,35 @@ const chatContainer = document.querySelector(".chat-container");
 const phoneChat = document.querySelector(".phone-chat");
 const btn = document.querySelector(".send-btn");
 
-chatContainer.style.minHeight = `${scroller.clientHeight}px`;
-chatContainer.style.height = `${scroller.clientHeight}px`;
+const updateChatHeight = () => {
+  chatContainer.style.minHeight = `${scroller.clientHeight}px`;
+  chatContainer.style.height = `${phoneChat.clientHeight}px`;
+};
 
-// let counter = 0;
+const updateScrollPosition = () => {
+  scroller.scrollTop = scroller.scrollHeight - scroller.clientHeight;
+};
+
+const debounce = (func, time = 100) => {
+  var timer;
+  return function (event) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(func, time, event);
+  };
+}
+
+// set some initial height although not 100% precise when fonts are not cached
+updateChatHeight();
+updateScrollPosition();
+
+/* needed in case fonts are loaded later, usually they should be preloaded, but in this demo project
+   when run with live reload, fonts are not cached and loaded with delay */
+window.addEventListener("load", () => {
+  updateChatHeight();
+  updateScrollPosition();
+});
+
+window.addEventListener("resize", debounce(updateChatHeight, 150));
 
 btn.addEventListener("click", () => {
   const el = document.createElement("div");
@@ -20,6 +45,7 @@ btn.addEventListener("click", () => {
 
   phoneChat.classList.add("notransition"); // Disable transitions
   phoneChat.appendChild(el);
+  // must include any additional margin in the value
   phoneChat.style.transform = `translateY(${el.clientHeight}px)`;
   phoneChat.offsetHeight; // Trigger a reflow, flushing the CSS changes
   phoneChat.classList.remove("notransition"); // Re-enable transitions
@@ -31,12 +57,11 @@ btn.addEventListener("click", () => {
     ? Number(chatContainer.style.height.split("px")[0])
     : 0;
   //el.offsetHeight;
+  // must include any additional margins in the calculation
   chatContainer.style.height = `${containerHeight + el.clientHeight}px`;
 
   //chatContainer.offsetHeight;
 
-  // using margin on the newly added child causes scroll to immediately move by that margin, THEN do the animation
-  // thus using padding on the chat message wrapper
   scroller.scrollTop = scroller.scrollHeight - scroller.clientHeight;
 
   phoneChat.style.transform = "translateY(0)";

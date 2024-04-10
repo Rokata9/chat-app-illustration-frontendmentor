@@ -34,7 +34,9 @@ body {
   font-family: "Rubik", sans-serif;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  margin: 0;
 }
 
 .flow > * + * {
@@ -59,15 +61,49 @@ body {
  - Very Dark Desaturated Violet (main heading): hsl(271, 36%, 24%)
  - Dark Grayish Violet (paragraph): hsl(270, 7%, 64%) */
 
+
+ .container {
+  --container-gap: 2rem;
+  --phone-width: clamp(18rem, 14.1379rem + 19.3103vw, 25rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  gap: 10rem; // TODO: clamp
+ }
+
+ .booking {
+  width: 40ch; // TODO: clamp
+ }
+
+ .gradient-bg {
+  background: teal;
+  position: absolute;
+  right: calc(100% - 5rem);
+  bottom: -2rem;
+  left: calc(-1 * calc(50vw - var(--container-gap) * 0.5 - var(--phone-width) + 2rem));
+  top: -100vh;
+  z-index: -1;
+  border-radius: 100vw;
+ }
+
+.phone-wrapper {
+  position: relative;
+}
+
 .phone {
   width: clamp(18rem, 14.1379rem + 19.3103vw, 25rem);
-  aspect-ratio: 9 / 21;
+  aspect-ratio: 9 / 16;
   padding: 1.25em;
   box-shadow: 0 16px 20px 10px rgb(204 198 198 / 50%);
-  border-radius: 1.5rem;
+  // According to https://www.30secondsofcode.org/css/s/nested-border-radius/ 
+  // 1.25em (distance to inner border radius) + 1.5rem (inner border radius of header for top-left and top-right or of footer for bottom-left and bottom-right) 
+  border-radius: 2.75rem; 
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  // position: relative;
+  background-color: #fff;
 
   // TODO: remove
   margin-top: 2rem;
@@ -87,7 +123,7 @@ body {
     gap: 0.25rem;
     align-items: center;
     padding: 2em 1em 1em;
-    border-radius: 1.5em 1.5em 0.5em 0.5em;
+    border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
     @include gradient(45deg);
 
     &::after {
@@ -145,6 +181,8 @@ body {
   .item-scroller {
     overflow-y: scroll;
     flex-grow: 1;
+    // cover white background left by header rounder corners
+    box-shadow: 0 -0.5rem 0 0 var(--clr-secondary-300);
   }
 
   .chat-container {
@@ -167,21 +205,23 @@ body {
     position: absolute;
     right: 0;
     //top: 0;
-    //border-radius: 0 0 1.5rem 1.5rem; blurry text???
 
     .message-wrapper {
       display: flex;
       padding-top: 1rem;
 
-      .space-evenly {
-        display: flex;
-        justify-content: space-evenly;
+      .image-grid {
+        display: grid;
+        // could be without a clamp, but with a fixed value to keep consistent layout when increasing viewport
+        grid-template-columns: repeat(auto-fit, minmax(clamp(3rem, 1rem + 10vw, 5rem), 1fr));
+        width: 90%;
+        justify-content: end;
         gap: 1rem;
+        direction: rtl; // so that if a single image is on a new line it appears to the right
 
         img {
-          width: 5rem;
-          aspect-ratio: 1;
           border-radius: 1.5rem;
+          aspect-ratio: 1;
         }
       }
 
@@ -241,7 +281,8 @@ body {
 
   footer {
     background-color: var(--clr-secondary-300);
-    padding: 0 1em 1em;
+    padding: 1em;
+    border-radius: 0 0 1.5rem 1.5rem;
 
     .input-wrapper {
       position: relative;

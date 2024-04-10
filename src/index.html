@@ -22,89 +22,100 @@
     <title>Frontend Mentor | Chat app Illustration</title>
   </head>
   <body>
-    <div class="phone">
-      <header class="phone-header bg-gradient">
-        <div class="back"></div>
-        <div class="avatar">
-          <img src="/assets/avatar.jpg" alt="user avatar" />
+    <div class="container">
+      <div class="phone-wrapper">
+        <div class="gradient-bg">
         </div>
-        <p class="user-name">Samuel Green</p>
-        <p class="user-status">Available to Walk</p>
-        <div class="actions"></div>
-      </header>
-
-      <div class="item-scroller">
-        <div class="chat-container">
-          <main class="phone-chat" style="transform: translateY(0)">
-            <div class="message-wrapper start">
-              <p class="chat-message bg-mid">
-                That sounds great. I’d be happy with that.
-              </p>
+        <div class="phone">
+          <header class="phone-header bg-gradient">
+            <div class="back"></div>
+            <div class="avatar">
+              <img src="/assets/avatar.jpg" alt="user avatar" />
             </div>
-            <div class="message-wrapper start">
-              <p class="chat-message bg-mid">
-                Could you send over some pictures of your dog, please?
-              </p>
+            <p class="user-name">Samuel Green</p>
+            <p class="user-status">Available to Walk</p>
+            <div class="actions"></div>
+          </header>
+          <div class="item-scroller">
+            <div class="chat-container">
+              <main class="phone-chat" style="transform: translateY(0)">
+                <div class="message-wrapper start">
+                  <p class="chat-message bg-mid">
+                    That sounds great. I’d be happy with that.
+                  </p>
+                </div>
+                <div class="message-wrapper start">
+                  <p class="chat-message bg-mid">
+                    Could you send over some pictures of your dog, please?
+                  </p>
+                </div>
+                <div class="message-wrapper end">
+                  <div class="image-grid">
+                    <img src="assets/dog-image-1.jpg" alt="dog image 1" />
+                    <img src="assets/dog-image-2.jpg" alt="dog image 2" />
+                    <img src="assets/dog-image-3.jpg" alt="dog image 3" />
+                    <img src="assets/dog-image-1.jpg" alt="dog image 1" />
+                    <img src="assets/dog-image-2.jpg" alt="dog image 2" />
+                    <img src="assets/dog-image-3.jpg" alt="dog image 3" />
+                    <img src="assets/dog-image-1.jpg" alt="dog image 1" />
+                    <img src="assets/dog-image-2.jpg" alt="dog image 2" />
+                    <img src="assets/dog-image-3.jpg" alt="dog image 3" />
+                    <img src="assets/dog-image-3.jpg" alt="dog image 3" />
+                  </div>
+                </div>
+                <div class="message-wrapper end">
+                  <p class="chat-message bg-light">
+                    Here are a few pictures. She’s a happy girl!
+                  </p>
+                </div>
+                <div class="message-wrapper end">
+                  <p class="chat-message bg-light">Can you make it?</p>
+                </div>
+                <div class="message-wrapper start">
+                  <p class="chat-message bg-mid">
+                    She looks so happy! The time we discussed works. How long
+                    shall I take her out for?
+                  </p>
+                </div>
+                <div class="message-wrapper start">
+                  <p class="chat-message bg-gradient">
+                    <label class="radio-wrapper">
+                      30 minute walk
+                      <input type="radio" name="walk-duration" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <span class="price">$29</span>
+                  </p>
+                </div>
+                <div class="message-wrapper start">
+                  <p class="chat-message bg-gradient">
+                    <label class="radio-wrapper">
+                      1 hour walk
+                      <input type="radio" name="walk-duration" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <span class="price">$49</span>
+                  </p>
+                </div>
+              </main>
             </div>
-            <div class="message-wrapper end">
-              <div class="space-evenly">
-                <img src="assets/dog-image-1.jpg" alt="dog image 1" />
-                <img src="assets/dog-image-2.jpg" alt="dog image 2" />
-                <img src="assets/dog-image-3.jpg" alt="dog image 3" />
-              </div>
+          </div>
+          <footer>
+            <div class="input-wrapper">
+              <input type="text" name="message" placeholder="Type a message..." />
+              <button type="button" class="send-btn">></button>
             </div>
-            <div class="message-wrapper end">
-              <p class="chat-message bg-light">
-                Here are a few pictures. She’s a happy girl!
-              </p>
-            </div>
-            <div class="message-wrapper end">
-              <p class="chat-message bg-light">Can you make it?</p>
-            </div>
-            <div class="message-wrapper start">
-              <p class="chat-message bg-mid">
-                She looks so happy! The time we discussed works. How long shall
-                I take her out for?
-              </p>
-            </div>
-            <div class="message-wrapper start">
-              <p class="chat-message bg-gradient">
-                <label class="radio-wrapper">
-                  30 minute walk
-                  <input type="radio" name="walk-duration" />
-                  <span class="checkmark"></span>
-                </label>
-                <span class="price">$29</span>
-              </p>
-            </div>
-            <div class="message-wrapper start">
-              <p class="chat-message bg-gradient">
-                <label class="radio-wrapper">
-                  1 hour walk
-                  <input type="radio" name="walk-duration" />
-                  <span class="checkmark"></span>
-                </label>
-                <span class="price">$49</span>
-              </p>
-            </div>
-          </main>
+          </footer>
         </div>
       </div>
 
-      <footer>
-        <div class="input-wrapper">
-          <input type="text" name="message" placeholder="Type a message..." />
-          <button type="button" class="send-btn">></button>
-        </div>
-      </footer>
+      <div class="booking">
+        <h1>Simple booking</h1>
+        <p>Stay in touch with our dog walkers through the chat interface. This makes it easy to 
+          discuss arrangements and make bookings. Once the walk has been completed you can rate 
+          your walker and book again all through the chat.</p>
+      </div>
     </div>
-    <!-- Type a message…
-
-  Simple booking
-
-  Stay in touch with our dog walkers through the chat interface. This makes it easy to 
-  discuss arrangements and make bookings. Once the walk has been completed you can rate 
-  your walker and book again all through the chat. -->
 
     <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
