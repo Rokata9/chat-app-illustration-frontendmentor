@@ -29,6 +29,7 @@
 
 $br-chat-message-3-corners: 1.5em;
 $br-chat-message-bottom-corner: 0.5em;
+$tablet-width: 48em;
 
 body {
   font-family: "Rubik", sans-serif;
@@ -58,33 +59,46 @@ body {
 
 .container {
   --phone-aspect-ratio: calc(9 / 16);
-  --container-gap: clamp(
-    2rem,
-    -6.6667rem + 18.0556vw,
-    15rem
-  ); // from 768px to 1920px
+  --container-gap: clamp(2rem, -6.6667rem + 18.0556vw, 15rem); // from 768px to 1920px
   --container-block-padding: 4rem;
+  --container-inline-padding: 1rem;
 
   // in rems as we want to be able to zoom in that particular part
   --phone-width: clamp(18rem, 15.9545rem + 10.2273vw, 22.5rem); // from 320px to 1024px
   --phone-height: calc(1 / var(--phone-aspect-ratio) * var(--phone-width));
 
-  // fraction of phone width could also be clamped instead of fixed rems, specifies
-  // what part of the gradient flows behind phone
-  --gradient-right-offset: clamp(
-    -20rem,
-    -30rem + 20.8333vw,
-    -5rem
-  ); // from 768px to 1920px
+  /* fraction of phone width could also be clamped instead of fixed rems, specifies
+     what part of the decoration flows behind phone horizontally;
+     want to decrease as viewport increases, so using negative values for clamp */
+  --gradient-right-offset: clamp(-20rem, -30rem + 20.8333vw, -5rem); // from 768px to 1920px
 
-  --decoration-height: calc((100% - var(--phone-height)) * 0.5 - 2rem);
+  // handles also vertical mode of monitors, thus included height in name
+  --decoration-height-desktop: calc((100% - var(--phone-height)) * 0.5 - 2rem);
 
-  padding: var(--container-block-padding) 1rem;
+  /* distance between left edge of phone and left edge of viewport + some offset to move a bit decoration,
+     should be equal for both decorations */
+  --decoration-width-desktop: calc(-1 * (50vw - var(--container-gap) * 0.5 - 100% + 2rem));
+
+  --decoration-half-width-mobile: calc(-1 * (50% + (100vw - var(--phone-width)) * 0.5));
+
+  /* distance between end of decoration and end of containing flex item for phone decoration
+     and between start of containing flex item and start of decoration for booking decoration */
+  --decoration-horizontal-offset-desktop: calc(var(--phone-width) - var(--gradient-right-offset) * -1);
+  
+  // how much the phone is ahead of decoration vertically on mobile
+  --phone-vertical-offset-mobile: 2rem;
+
+  padding: var(--container-block-padding) var(--container-inline-padding) 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  // align-items: center;
   flex-grow: 1;
   gap: var(--container-gap);
+
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
+    padding-block-end: var(--container-block-padding);
+  }
 }
 
 .booking {
@@ -93,16 +107,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  --booking-decoration-height-mobile: calc(var(--phone-height) + var(--container-block-padding) - var(--phone-vertical-offset-mobile));
+  --booking-decoration-top-offset-mobile: 7.5rem;
 
   &::before {
     content: "";
     position: absolute;
-    right: calc(
-      -1 * calc(50vw - var(--container-gap) * 0.5 - var(--phone-width) + 2rem)
-    );
-    bottom: calc(var(--container-block-padding) * -1);
-    top: var(--decoration-height); // 2rem;
-    left: calc(100% - var(--gradient-right-offset) * -1);
+    right: var(--decoration-width-desktop);
+    bottom: calc(var(--container-block-padding) * -1); // has to cover container's padding
+    top: var(--decoration-height-desktop); // 2rem;
+    left: var(--decoration-horizontal-offset-desktop);
     background: var(--clr-secondary-300);
     border-radius: 100vw 100vw 0 0;
     z-index: -1;
@@ -116,6 +130,22 @@ body {
     color: var(--clr-neutral-400);
     line-height: 1.8;
   }
+  
+  @media (max-width: $tablet-width) {
+    text-align: center;
+
+    // exclude decoration's top offset from content's height (starting just after phone and the gap)
+    height: calc(var(--booking-decoration-height-mobile) - var(--booking-decoration-top-offset-mobile));
+    align-items: center;
+
+    &::before {
+      left: 50%;
+      right: var(--decoration-half-width-mobile);
+      top: calc(-1 * var(--booking-decoration-top-offset-mobile));
+      height: var(--booking-decoration-height-mobile);
+      bottom: unset; // using bottom: var(--container-block-padding) * -1 would make this decoration higher than the phone's
+    }
+  }
 }
 
 .phone-wrapper {
@@ -123,20 +153,30 @@ body {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   &::before {
     content: "";
     position: absolute;
-    // need to calculate the distance between left edge of screen and left edge of phone,
-    // that would be the negative left for the decoration; should be with - as it's relative to the phone (needs to move right)
-    // +2rem - so it's not exactly glued to the left edge and hide pratially the border radius
-    left: calc(-1 * calc(50vw - var(--container-gap) * 0.5 - 100% + 2rem));
+
+    /* need to calculate the distance between left edge of screen and left edge of phone,
+       that would be the negative left for the decoration; should be with - as it's relative to the phone (needs to move right)
+       +2rem - so it's not exactly glued to the left edge and hide partially the border radius (pill rounding) */
+    left: var(--decoration-width-desktop);
     top: calc(var(--container-block-padding) * -1);
-    right: calc(100% - var(--gradient-right-offset) * -1);
-    bottom: var(--decoration-height);
+
+    // --gradient-right-offset is negative so clamp can work (should increase)
+    right: var(--decoration-horizontal-offset-desktop);
+    bottom: var(--decoration-height-desktop);
     z-index: -1;
     border-radius: 0 0 100vw 100vw;
     @include gradient(180deg);
+
+    @media (max-width: $tablet-width) {
+      left: var(--decoration-half-width-mobile); //calc(-1 * (100vw - 100%) * 0.5);
+      right: 50%; //calc(-1 * (100vw - 100%) * 0.5);
+      bottom: var(--phone-vertical-offset-mobile);
+    }
   }
 }
 
@@ -182,7 +222,6 @@ body {
       border-radius: 100vw;
     }
 
-    // TODO: temp
     .actions {
       display: flex;
       flex-direction: column;
