@@ -75,11 +75,9 @@ body {
   // handles also vertical mode of monitors, thus included height in name
   --decoration-height-desktop: calc((100% - var(--phone-height)) * 0.5 - 2rem);
 
-  /* distance between left edge of phone and left edge of viewport + some offset to move a bit decoration,
+  /* distance between left edge of phone and left edge of viewport + some offset to move a bit decoration to left/right,
      should be equal for both decorations */
   --decoration-width-desktop: calc(-1 * (50vw - var(--container-gap) * 0.5 - 100% + 2rem));
-
-  --decoration-half-width-mobile: calc(-1 * (50% + (100vw - var(--phone-width)) * 0.5));
 
   /* distance between end of decoration and end of containing flex item for phone decoration
      and between start of containing flex item and start of decoration for booking decoration */
@@ -140,7 +138,7 @@ body {
 
     &::before {
       left: 50%;
-      right: var(--decoration-half-width-mobile);
+      width: 100vw;
       top: calc(-1 * var(--booking-decoration-top-offset-mobile));
       height: var(--booking-decoration-height-mobile);
       bottom: unset; // using bottom: var(--container-block-padding) * -1 would make this decoration higher than the phone's
@@ -173,9 +171,11 @@ body {
     @include gradient(180deg);
 
     @media (max-width: $tablet-width) {
-      left: var(--decoration-half-width-mobile); //calc(-1 * (100vw - 100%) * 0.5);
-      right: 50%; //calc(-1 * (100vw - 100%) * 0.5);
+      right: 50%;
       bottom: var(--phone-vertical-offset-mobile);
+      width: 100vw;
+      top: calc(-1 * var(--container-block-padding));
+      left: unset;
     }
   }
 }
